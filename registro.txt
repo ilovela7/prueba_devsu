@@ -1,0 +1,3 @@
+Este registro tiene como finalidad la documentación del proyecto de Devsu con los ejercicios de práctica para QA E2E y pruebas API
+Documento desarrollado por Laura Itzel Hernández Fernández
+Con inicio del 12 de marzo a las 11:45
