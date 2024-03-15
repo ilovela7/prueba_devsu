@@ -1,0 +1,58 @@
+
+# Instalar dependencia de JDK
+!apt-get install -y openjdk-21-jdk
+from google.colab import drive
+
+# Conectar a Drive
+drive.mount('/content/drive')
+
+# Instalar Maven
+!pip3 install maven
+!apt-get install -y maven
+import os
+
+# Ruta al directorio de Maven
+maven_home = '/content/drive/MyDrive/maven/apache-maven-3.9.6/bin'
+
+# Configurar la variable de entorno M2_HOME
+os.environ['M2_HOME'] = maven_home
+
+# Agregar Maven al PATH
+os.environ['PATH'] += ':' + os.path.join(maven_home, 'bin')
+
+# Validar version de Maven
+!mvn -version
+
+
+# Descargar e instalar dependencias de Selenium
+!apt-get update
+!apt-get install chromium chromium-driver
+!pip3 install selenium
+!pip install pytest pytest-html
+
+
+# Correr pruebas de E2E
+
+!python /content/drive/MyDrive/maven/script_test/test_add_cart.py 
+!python /content/drive/MyDrive/maven/script_testtest_show_cart.py 
+!python /content/drive/MyDrive/maven/script_testtest_form.py 
+!python /content/drive/MyDrive/maven/script_testtest_buy.py 
+
+shutil.copy("/content/reporteCart.html", "/content/drive/MyDrive/maven/reports/")
+shutil.copy("/content/reportesCart.html", "/content/drive/MyDrive/maven/reports/")
+shutil.copy("/content/reporteForm.html", "/content/drive/MyDrive/maven/reports/")
+shutil.copy("/content/reporteBuy.html", "/content/drive/MyDrive/maven/reports/")
+
+
+# Descargar dependencia de Karate
+!wget https://github.com/karatelabs/karate/releases/download/v1.5.0.RC3/karate-1.5.0.RC3.jar
+
+# Correr pruebas de API
+test = '/content/drive/MyDrive/maven/signup.feature'
+ruta = '/content/drive/MyDrive/maven/reports/'
+!java -jar karate-1.5.0.RC3.jar test --output ruta
+# Mover archivo de reportes a carpeta del proyecto
+import shutil
+shutil.copy("/content/ruta/karate-reports/karate-summary.html", "/content/drive/MyDrive/maven/reports/")
+
+
